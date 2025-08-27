@@ -14,15 +14,45 @@ const projects = [
     liveLink: "sortingvisualizer-shaina.netlify.app/",
   },
   {
-    title: "Intelligent Traffic Management System",
-    description:
-      "Developed an intelligent traffic management system leveraging Google Maps, IoT sensors, and AI. The system dynamically adjusts traffic signals and guides autonomous vehicles based on real-time traffic density and emergency vehicle detection.",
-    src: "",
-    link: "",
-    color: "#8f89ff",
-    githubLink: "",
-    liveLink: "",
-  }
+  title: "Mental Health Sentiment Modelling",
+  description:
+    "A research-driven project applying transformer-based NLP models to analyse sentiment trajectories in mental health discussions. Helps identify shifts in emotions over time to provide insights for mental well-being support systems.",
+  src: "",
+  link: "",
+  color: "#f58b57",
+  githubLink: "https://github.com/shaina-gh/mental-health-reddit-analyzer",
+  liveLink: "https://mental-health-reddit-analyzer-shaina.streamlit.app/",
+},
+{
+  title: "Skill Swap",
+  description:
+    "Skill Swap is a peer-learning platform designed to connect students who want to teach and learn different skills. It promotes collaborative knowledge-sharing through structured sessions and a credit-based system.",
+  src: "",
+  link: "",
+  color: "#50bfa0",
+  githubLink: "https://github.com/shaina-gh/skill-swap",
+  liveLink: "skill-nexus-swap.vercel.app/",
+},
+  {
+  title: "Project Portfolio Dashboard",
+  description:
+    "This project is a dynamic and interactive dashboard built in Microsoft Excel to track and visualise the key metrics of a project portfolio. It is designed to provide project managers and stakeholders with an at-a-glance view of project health, financial performance, and timelines.",
+  src: "",
+  link: "",
+  color: "#50bfa0",
+  githubLink: "https://github.com/shaina-gh/project-portfolio-dashboard",
+  liveLink: "docs.google.com/spreadsheets/d/1up1Gh2xd_0pmBtdeBJfTSbDrpi4cKKVC/edit?usp=drive_link&ouid=111425942432636054803&rtpof=true&sd=true",
+},
+{
+  title: "Agile Sprint Management Dashboard",
+  description:
+    "Designed and managed Agile sprint boards using Jira and Confluence. Created backlogs, epics, and user stories while tracking progress with burndown charts and retrospectives to simulate real project lifecycles.",
+  src: "",
+  link: "",
+  color: "#ffb84d",
+  githubLink: "",
+  liveLink: "",
+}
 ];
 
 export default function Projects1() {
