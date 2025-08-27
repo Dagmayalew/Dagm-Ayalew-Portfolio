@@ -43,6 +43,16 @@ const projects = [
   githubLink: "https://github.com/shaina-gh/project-portfolio-dashboard",
   liveLink: "docs.google.com/spreadsheets/d/1up1Gh2xd_0pmBtdeBJfTSbDrpi4cKKVC/edit?usp=drive_link&ouid=111425942432636054803&rtpof=true&sd=true",
 },
+  {
+  title: "Business Intelligence Dashboard",
+  description:
+    "Full-stack Business Intelligence dashboard built with React. It provides an interactive interface for supply chain managers to analyze logistics data, identify inefficiencies, and make data-driven decisions.",
+  src: "",
+  link: "",
+  color: "#50bfa0",
+  githubLink: "https://github.com/shaina-gh/supply-chain-frontend",
+  liveLink: "https://supplychainshaina.netlify.app/",
+},
 {
   title: "Agile Sprint Management Dashboard",
   description:
