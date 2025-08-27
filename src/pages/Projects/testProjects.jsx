@@ -39,7 +39,7 @@ const projects = [
     "This project is a dynamic and interactive dashboard built in Microsoft Excel to track and visualise the key metrics of a project portfolio. It is designed to provide project managers and stakeholders with an at-a-glance view of project health, financial performance, and timelines.",
   src: "",
   link: "",
-  color: "#50bfa0",
+  color: "#f58b57",
   githubLink: "https://github.com/shaina-gh/project-portfolio-dashboard",
   liveLink: "docs.google.com/spreadsheets/d/1up1Gh2xd_0pmBtdeBJfTSbDrpi4cKKVC/edit?usp=drive_link&ouid=111425942432636054803&rtpof=true&sd=true",
 },
