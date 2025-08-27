@@ -49,7 +49,7 @@ const projects = [
     "Full-stack Business Intelligence dashboard built with React. It provides an interactive interface for supply chain managers to analyze logistics data, identify inefficiencies, and make data-driven decisions.",
   src: "",
   link: "",
-  color: "#50bfa0",
+  color: "#5196fd",
   githubLink: "https://github.com/shaina-gh/supply-chain-frontend",
   liveLink: "https://supplychainshaina.netlify.app/",
 },
