@@ -218,3 +218,77 @@ pre[class*="language-"] {
   background-color: white;
   opacity: 0.8; /* Make it more visible */
 }
+
+.cursor-follower {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-120px, -120px, 0);
+  transition:
+    opacity 180ms ease,
+    filter 220ms ease;
+  filter: drop-shadow(0 14px 30px rgba(34, 211, 238, 0.22));
+  will-change: transform, opacity;
+}
+
+.cursor-follower-visible {
+  opacity: 1;
+}
+
+.cursor-follower-avatar {
+  height: 46px;
+  width: 46px;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 2px solid rgba(103, 232, 249, 0.9);
+  background: #020617;
+  box-shadow:
+    0 0 0 6px rgba(8, 47, 73, 0.38),
+    0 0 32px rgba(45, 212, 191, 0.24);
+}
+
+.cursor-follower-avatar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cursor-follower-bubble {
+  position: relative;
+  max-width: 96px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(2, 6, 23, 0.88);
+  padding: 0.55rem 0.75rem;
+  color: #ecfeff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+}
+
+.cursor-follower-bubble::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  height: 9px;
+  width: 9px;
+  transform: translateY(-50%) rotate(45deg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(2, 6, 23, 0.88);
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cursor-follower {
+    display: flex;
+  }
+}

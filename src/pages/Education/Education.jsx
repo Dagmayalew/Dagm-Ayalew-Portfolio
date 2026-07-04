@@ -1,172 +1,26 @@
-import React, { useState } from "react";
-import EducationLoader from "@/components/ui/EducationLoader";
-import {
-  Star,
-  Award,
-  Calendar,
-  BookOpen,
-  GraduationCap,
-  Trophy,
-} from "lucide-react";
-import { motion } from "framer-motion";
+import React from "react";
+import { GraduationCap } from "lucide-react";
 
-const EducationSection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const educationData = [
-    {
-      degree: "Bachelor of Technology in Computer Science and Engineering",
-      school: "Vellore Institute of Technology",
-      mascot: "📘",
-      year: "2022 - 2026",
-      achievements: [],
-      skills: [],
-      description:
-        "",
-    },
-    {
-      degree: "Senior School Certificate - CBSE",
-      school: "GT Aloha Vidhya Mandir, Chennai",
-      mascot: "📗",
-      year: "2022",
-      achievements: [],
-      skills: [],
-      description:
-        "",
-    },
-    {
-      degree: "Indian Certificate of Secondary Education - ICSE",
-      school: "Primrose Schools, Chennai",
-      mascot: "📘",
-      year: "2020",
-      achievements: [],
-      skills: [],
-      description:
-        "",
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
+export default function Education() {
   return (
-    <section className="min-h-screen relative overflow-hidden py-40 bg-[#04081A]">
-      {/* Grid Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:50px_50px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#04081A] via-transparent to-[#04081A]" />
-        <div className="absolute inset-0 border border-white/[0.05] grid grid-cols-2 md:grid-cols-4" />
-      </div>
+    <section className="min-h-screen bg-[#04081A] px-6 py-32 text-white">
+      <div className="mx-auto max-w-5xl">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">Education</p>
+        <h1 className="text-4xl font-semibold leading-tight md:text-6xl">Academic background</h1>
 
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent mb-6">
-            Education
-          </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Take a look at my academic background, including the institutions I’ve attended and the degrees I’ve completed.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
-          {educationData.map((edu, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              className={`relative border rounded-xl p-8 transition-all duration-300 bg-gray-900/50 backdrop-blur-sm ${
-                hoveredIndex === index
-                  ? "border-teal-500 scale-[1.02]"
-                  : "border-blue-400/20"
-              }`}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{edu.mascot}</span>
-                    <h3 className="text-2xl font-bold text-white">
-                      {edu.degree}
-                    </h3>
-                  </div>
-                  <p className="text-lg text-gray-300 flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-teal-500" />
-                    {edu.school}
-                  </p>
-                  <p className="text-gray-400 flex items-center gap-2">
-                    <Calendar className="w-4 h-4" />
-                    {edu.year}
-                  </p>
-                </div>
-
-                <p className="text-gray-300 text-sm italic border-l-2 border-teal-500 pl-3">
-                  {edu.description}
-                </p>
-
-                {/* <div className="space-y-3">
-                  <h4 className="text-sm font-semibold text-white flex items-center gap-2">
-                    <Trophy className="w-4 h-4 text-yellow-500" />
-                    Key Achievements
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {edu.achievements.map((achievement, i) => (
-                      <div
-                        key={i}
-                        className="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 flex items-center gap-2 text-sm"
-                      >
-                        <Award className="w-4 h-4" />
-                        <span>{achievement}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div> */}
-
-                {/* <div className="flex flex-wrap gap-2">
-                  {edu.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 text-xs rounded bg-blue-500/10 text-blue-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div> */}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <article className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+          <div className="flex items-start gap-5">
+            <div className="rounded-2xl bg-cyan-400/10 p-4 text-cyan-300">
+              <GraduationCap className="h-8 w-8" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-semibold">Bachelor of Science in Computer Science</h2>
+              <p className="mt-3 text-cyan-300">Unity University, Addis Ababa (Gerji Campus)</p>
+              <p className="mt-2 text-gray-400">Graduated 2025</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
   );
-};
-
-export default EducationSection;
+}

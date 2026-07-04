@@ -1,237 +1,90 @@
 import React, { useState } from "react";
-import { Send, Phone, MapPin, Mail } from "lucide-react";
+import { Download, Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { profile } from "@/data/portfolio";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("");
 
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState(null);
-
-  const validateForm = () => {
-    let tempErrors = {};
-    let isValid = true;
-
-    if (!formData.name.trim()) {
-      tempErrors.name = "Name is required";
-      isValid = false;
-    }
-
-    if (!formData.email.trim()) {
-      tempErrors.email = "Email is required";
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = "Email is invalid";
-      isValid = false;
-    }
-
-    if (!formData.subject.trim()) {
-      tempErrors.subject = "Subject is required";
-      isValid = false;
-    }
-
-    if (!formData.message.trim()) {
-      tempErrors.message = "Message is required";
-      isValid = false;
-    }
-
-    setErrors(tempErrors);
-    return isValid;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      setStatus("Please fill in all required fields correctly.");
-      return;
-    }
-
-    // Create a new FormData object to send to Web3Forms API
-    const form = new FormData();
-    form.append("access_key", "90f4b8af-e590-42b0-beaf-10b18f66a703"); // Replace with your Web3Forms access key
-    form.append("name", formData.name);
-    form.append("email", formData.email);
-    form.append("subject", formData.subject || "New Contact Form Submission");
-    form.append("message", formData.message);
-
-    try {
-      // Send form data to Web3Forms API
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: form,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setStatus("Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-        setErrors({});
-      } else {
-        setStatus(result.message || "There was an error sending your message.");
-      }
-    } catch (error) {
-      setStatus("An error occurred. Please try again.");
-      console.error("Error:", error);
-    }
-  };
+  function handleSubmit(event) {
+    event.preventDefault();
+    const subject = encodeURIComponent("Portfolio inquiry");
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+    setStatus("Opening your mail app so the message can be sent directly.");
+  }
 
   return (
-    <main
-      className="pt-20 lg:pt-[0rem] bg-[#04081A]
- text-white min-h-screen"
-    >
-      <section className="hero min-h-screen flex items-center relative px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                  Get in Touch!
-                </h2>
-                <p className="text-gray-300 text-lg">
-                  Feel free to reach out for any queries, collaboration opportunities, or projects you'd like to work on together. I'm always open to learning, connecting, and exploring new possibilities. Looking forward to hearing from you!
-                </p>
-              </div>
+    <section className="min-h-screen bg-[#04081A] px-6 py-32 text-white">
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+        <div>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">Contact</p>
+          <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
+            Available for remote roles, freelance work, and product collaborations.
+          </h1>
+          <p className="mt-6 text-lg leading-8 text-gray-300">
+            Reach out for mobile app development, frontend work, full-stack product builds,
+            or product-focused engineering support.
+          </p>
 
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-purple-500/10 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-400">shainaofficia10@gmail.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="bg-pink-500/10 p-3 rounded-lg">
-                    <MapPin className="w-6 h-6 text-pink-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">Location</h3>
-                    <p className="text-gray-400">Chennai, India</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="backdrop-blur-lg bg-white/5 p-8 rounded-2xl shadow-xl">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.name ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors`}
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                    )}
-                  </div>
-
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.email ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors`}
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Subject"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.subject ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors`}
-                      value={formData.subject}
-                      onChange={(e) =>
-                        setFormData({ ...formData, subject: e.target.value })
-                      }
-                    />
-                    {errors.subject && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.subject}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <textarea
-                      placeholder="Your Message"
-                      rows="4"
-                      className={`w-full px-4 py-3 rounded-lg bg-white/5 border ${
-                        errors.message ? "border-red-500" : "border-gray-700"
-                      } focus:border-blue-500 focus:outline-none transition-colors resize-none`}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                    ></textarea>
-                    {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center space-x-2 hover:opacity-90 transition-opacity"
-                >
-                  <span>Send Message</span>
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-
-              {/* Status Message */}
-              {status && (
-                <div
-                  className={`mt-4 text-center ${
-                    status.includes("success")
-                      ? "text-green-400"
-                      : "text-red-400"
-                  }`}
-                >
-                  <p>{status}</p>
-                </div>
-              )}
-            </div>
+          <div className="mt-8 grid gap-4">
+            <a href={`mailto:${profile.email}`} className="flex items-center gap-3 text-gray-300 hover:text-cyan-300">
+              <Mail className="h-5 w-5" /> {profile.email}
+            </a>
+            <p className="flex items-center gap-3 text-gray-300">
+              <Phone className="h-5 w-5" /> {profile.phone}
+            </p>
+            <p className="flex items-center gap-3 text-gray-300">
+              <MapPin className="h-5 w-5" /> {profile.location}
+            </p>
+            <a href={profile.linkedIn} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-cyan-300">
+              <Linkedin className="h-5 w-5" /> LinkedIn
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-gray-300 hover:text-cyan-300">
+              <Github className="h-5 w-5" /> GitHub
+            </a>
           </div>
         </div>
-      </section>
-    </main>
+
+        <form onSubmit={handleSubmit} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+          <div className="grid gap-5">
+            <input
+              required
+              placeholder="Your name"
+              value={formData.name}
+              onChange={(event) => setFormData({ ...formData, name: event.target.value })}
+              className="rounded-xl border border-white/10 bg-slate-950/50 px-4 py-3 outline-none focus:border-cyan-300"
+            />
+            <input
+              required
+              type="email"
+              placeholder="Your email"
+              value={formData.email}
+              onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+              className="rounded-xl border border-white/10 bg-slate-950/50 px-4 py-3 outline-none focus:border-cyan-300"
+            />
+            <textarea
+              required
+              rows="6"
+              placeholder="Message"
+              value={formData.message}
+              onChange={(event) => setFormData({ ...formData, message: event.target.value })}
+              className="resize-none rounded-xl border border-white/10 bg-slate-950/50 px-4 py-3 outline-none focus:border-cyan-300"
+            />
+          </div>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300">
+              Submit <Send className="h-4 w-4" />
+            </button>
+            <a href={profile.cvPath} download className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300">
+              Download CV <Download className="h-4 w-4" />
+            </a>
+          </div>
+          {status && <p className="mt-4 text-sm text-cyan-300">{status}</p>}
+        </form>
+      </div>
+    </section>
   );
 }
