@@ -1,16 +1,46 @@
-# 🚀 Shaina's Portfolio  
+# Dagm Ayalew Portfolio
 
-Welcome to my personal portfolio! This website showcases my work, projects, and experiences as an aspiring Software Engineer & Developer.  
+Professional portfolio for Dagm Ayalew, a mobile app and full stack software developer focused on React Native, Next.js, Go, PostgreSQL, API integration, and production-ready product flows.
 
-## 🌐 Live Website  
-[Visit My Portfolio](https://shaina--portfolio.vercel.app/)  
+## Features
 
-## 📌 Features  
-- **Projects** – A collection of my technical work.  
-- **Experience** – My journey in tech and leadership roles.  
-- **Skills** – Technologies I work with.  
-- **Contact** – Get in touch with me.  
+- Recruiter-focused single-page portfolio
+- Premium responsive SaaS-style UI
+- Case-study style featured projects
+- Skills grouped by hiring signal
+- Experience, process, trust, and contact sections
+- Downloadable CV at `/Dagm_Ayalew_CV.pdf`
+- SEO and Open Graph metadata
 
-## ⚙️ Tech Stack  
-- **Frontend:** React, Vite, Tailwind CSS  
-- **Deployment:** Vercel  
+## Tech Stack
+
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://127.0.0.1:5173/`.
+
+## Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Deploy To Vercel
+
+1. Push the project to GitHub.
+2. Import the repository in Vercel.
+3. Use the default Vite settings.
+4. Confirm the build command is `npm run build`.
+5. Confirm the output directory is `dist`.
+# Dagm-Ayalew-Portfolio
