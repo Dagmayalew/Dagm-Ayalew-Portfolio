@@ -373,8 +373,101 @@ pre[class*="language-"] {
   * {
     @apply border-border;
   }
+  html {
+    background: #020617;
+  }
   body {
-    @apply bg-background text-foreground;
+    background: #020617;
+    @apply text-foreground;
+  }
+}
+
+#root {
+  min-height: 100vh;
+  background: #020617;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.route-image-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(34, 211, 238, 0.12), transparent 28rem),
+    linear-gradient(135deg, #020617 0%, #071524 48%, #031b1d 100%);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.06);
+}
+
+.route-image-transition-active {
+  animation: route-image-flash 1200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.route-image-transition img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.48;
+  filter: saturate(0.94) contrast(1.08) brightness(0.92);
+  mix-blend-mode: screen;
+}
+
+.route-image-transition::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(52, 211, 153, 0.12), transparent 22rem),
+    radial-gradient(circle at 24% 22%, rgba(96, 165, 250, 0.14), transparent 24rem),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.34), rgba(2, 6, 23, 0.72));
+}
+
+.route-image-transition span {
+  position: relative;
+  z-index: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(2, 6, 23, 0.62);
+  padding: 0.75rem 1rem;
+  color: #ecfeff;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+@keyframes route-image-flash {
+  0% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  16% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  64% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
   }
 }
 /* Add these classes to adjust the grid colors in the top-left and bottom-right */
@@ -493,7 +586,7 @@ pre[class*="language-"] {
 }
 
 .cursor-follower-interactive .cursor-follower-avatar {
-  transform: scale(0.9) rotate(-4deg);
+  transform: rotate(-4deg);
   border-color: rgba(52, 211, 153, 0.95);
   box-shadow:
     0 0 0 7px rgba(20, 83, 45, 0.36),
@@ -504,6 +597,44 @@ pre[class*="language-"] {
   transform: translateX(3px) scale(1.03);
   border-color: rgba(52, 211, 153, 0.34);
   background: rgba(6, 78, 59, 0.9);
+}
+
+.cursor-follower-pop .cursor-follower-avatar {
+  animation: cursor-avatar-pop 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cursor-follower-pop .cursor-follower-bubble {
+  animation: cursor-bubble-pop 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cursor-avatar-pop {
+  0% {
+    transform: scale(1);
+  }
+  36% {
+    transform: scale(1.72) rotate(5deg);
+    box-shadow:
+      0 0 0 12px rgba(8, 47, 73, 0.42),
+      0 0 58px rgba(103, 232, 249, 0.38);
+  }
+  68% {
+    transform: scale(1.5) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cursor-bubble-pop {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  36% {
+    transform: translateX(14px) scale(1.08);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
 }
 
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {

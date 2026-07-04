@@ -6,8 +6,10 @@ export default function CursorFollower() {
   const positionRef = useRef({ x: 0, y: 0 });
   const targetRef = useRef({ x: 0, y: 0 });
   const frameRef = useRef(null);
+  const pulseTimeoutRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isInteractive, setIsInteractive] = useState(false);
+  const [isPopping, setIsPopping] = useState(false);
   const [cursorMessage, setCursorMessage] = useState({
     kicker: "Available",
     message: "Hire me",
@@ -66,15 +68,29 @@ export default function CursorFollower() {
       setCursorMessage({ kicker: "Available", message: "Hire me" });
     };
 
+    const schedulePulse = () => {
+      const delay = 5200 + Math.random() * 5200;
+
+      pulseTimeoutRef.current = window.setTimeout(() => {
+        setIsPopping(true);
+        window.setTimeout(() => setIsPopping(false), 900);
+        schedulePulse();
+      }, delay);
+    };
+
     window.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("mouseleave", handlePointerLeave);
     frameRef.current = requestAnimationFrame(moveFollower);
+    schedulePulse();
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("mouseleave", handlePointerLeave);
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current);
+      }
+      if (pulseTimeoutRef.current) {
+        window.clearTimeout(pulseTimeoutRef.current);
       }
     };
   }, []);
@@ -84,7 +100,9 @@ export default function CursorFollower() {
       ref={followerRef}
       className={`cursor-follower ${
         isVisible ? "cursor-follower-visible" : ""
-      } ${isInteractive ? "cursor-follower-interactive" : ""}`}
+      } ${isInteractive ? "cursor-follower-interactive" : ""} ${
+        isPopping ? "cursor-follower-pop" : ""
+      }`}
       aria-hidden="true"
     >
       <div className="cursor-follower-avatar">
