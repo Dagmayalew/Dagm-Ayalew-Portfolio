@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
-import "@/assets/css/tomorrow.css";
 import { Link } from "react-router-dom";
 import { Download, Mail } from "lucide-react";
 import Meteors from "@/components/ui/meteors";
 import SparklesText from "@/components/ui/sparkles-text";
 import { FlipWords } from "@/components/ui/flip-words";
+import Magnetic from "@/components/Magnetic";
+import { showCvDownloadToast } from "@/components/CvDownloadToast";
 import { profile, trustSignals } from "@/data/portfolio";
 
 function GridBackground() {
@@ -32,20 +31,53 @@ export default function Hero() {
     "Product Builder",
   ];
 
-  const [code] = useState(`
-const profile = {
-  name: 'Dagm Ayalew',
-  role: 'Mobile App & Full Stack Developer',
-  stack: ['React Native', 'Next.js', 'TypeScript', 'Go', 'PostgreSQL'],
-  strengths: ['Clean UI', 'API Integration', 'Performance', 'Product Thinking'],
-  location: 'Addis Ababa, Ethiopia',
-  hireable: true
-};
-  `);
+  const terminalLines = [
+    "dagm.status = \"available for remote roles\"",
+    "dagm.stack = [\"React Native\", \"Next.js\", \"TypeScript\", \"Go\", \"PostgreSQL\"]",
+    "dagm.focus = \"mobile-first products + reliable APIs\"",
+    "dagm.strengths = [\"clean UI\", \"auth flows\", \"payments\", \"deployment\"]",
+    "dagm.readyToBuild() // true",
+  ];
+
+  const [typedLines, setTypedLines] = useState([]);
+  const [currentLine, setCurrentLine] = useState("");
 
   useEffect(() => {
-    Prism.highlightAll();
-  }, [code]);
+    let lineIndex = 0;
+    let charIndex = 0;
+    let timeoutId;
+
+    const typeNextCharacter = () => {
+      const line = terminalLines[lineIndex];
+
+      if (!line) {
+        return;
+      }
+
+      setCurrentLine(line.slice(0, charIndex + 1));
+      charIndex += 1;
+
+      if (charIndex < line.length) {
+        timeoutId = window.setTimeout(typeNextCharacter, 26);
+        return;
+      }
+
+      timeoutId = window.setTimeout(() => {
+        setTypedLines((lines) => [...lines, line]);
+        setCurrentLine("");
+        lineIndex += 1;
+        charIndex = 0;
+
+        if (lineIndex < terminalLines.length) {
+          timeoutId = window.setTimeout(typeNextCharacter, 170);
+        }
+      }, 420);
+    };
+
+    timeoutId = window.setTimeout(typeNextCharacter, 450);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#020617] pt-20 text-white lg:pt-0">
@@ -80,25 +112,32 @@ const profile = {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link
-                to="/projects"
-                className="rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-400 px-6 py-4 text-center font-semibold text-slate-950 transition hover:scale-105"
-              >
-                View Projects
-              </Link>
-              <a
-                href={profile.cvPath}
-                download
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-4 font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300"
-              >
-                Download CV <Download className="h-4 w-4" />
-              </a>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-4 font-semibold text-white transition hover:border-emerald-300 hover:text-emerald-300"
-              >
-                Contact Me <Mail className="h-4 w-4" />
-              </Link>
+              <Magnetic>
+                <Link
+                  to="/projects"
+                  className="block rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-400 px-6 py-4 text-center font-semibold text-slate-950 transition hover:shadow-[0_0_2rem_-0.7rem_#67e8f9]"
+                >
+                  View Projects
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href={profile.cvPath}
+                  download
+                  onClick={showCvDownloadToast}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-4 font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300"
+                >
+                  Download CV <Download className="h-4 w-4" />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-4 font-semibold text-white transition hover:border-emerald-300 hover:text-emerald-300"
+                >
+                  Contact Me <Mail className="h-4 w-4" />
+                </Link>
+              </Magnetic>
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -119,11 +158,19 @@ const profile = {
                   <div className="window-dot bg-red-500" />
                   <div className="window-dot bg-yellow-500" />
                   <div className="window-dot bg-green-500" />
-                  <span className="ml-2 text-sm text-gray-400">profile.js</span>
+                  <span className="ml-2 text-sm text-gray-400">terminal</span>
                 </div>
-                <pre className="language-javascript">
-                  <code className="language-javascript">{code}</code>
-                </pre>
+                <div className="terminal-intro" aria-label="Animated developer terminal">
+                  {typedLines.map((line) => (
+                    <p key={line}>
+                      <span className="terminal-prompt">$</span> {line}
+                    </p>
+                  ))}
+                  <p>
+                    <span className="terminal-prompt">$</span> {currentLine}
+                    <span className="terminal-caret" />
+                  </p>
+                </div>
                 </div>
               </div>
             </div>

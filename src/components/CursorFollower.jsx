@@ -3,11 +3,15 @@ import ProfileImage from "@/assets/images/hero.png";
 
 export default function CursorFollower() {
   const followerRef = useRef(null);
-  const bubbleRef = useRef(null);
   const positionRef = useRef({ x: 0, y: 0 });
   const targetRef = useRef({ x: 0, y: 0 });
   const frameRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
+  const [cursorMessage, setCursorMessage] = useState({
+    kicker: "Available",
+    message: "Hire me",
+  });
 
   useEffect(() => {
     const supportsFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -34,14 +38,33 @@ export default function CursorFollower() {
     };
 
     const handlePointerMove = (event) => {
+      const interactiveTarget = event.target.closest(
+        "a, button, input, textarea, select, [role='button']"
+      );
+      const messageTarget = event.target.closest("[data-cursor-message]");
+      const nextMessage = messageTarget
+        ? {
+            kicker: messageTarget.dataset.cursorKicker || "Explore",
+            message: messageTarget.dataset.cursorMessage,
+          }
+        : interactiveTarget
+          ? { kicker: "Open it", message: "Let's go" }
+          : { kicker: "Available", message: "Hire me" };
+
       targetRef.current = {
-        x: event.clientX + 18,
-        y: event.clientY + 18,
+        x: event.clientX + (interactiveTarget ? 26 : 18),
+        y: event.clientY + (interactiveTarget ? 22 : 18),
       };
       setIsVisible(true);
+      setIsInteractive(Boolean(interactiveTarget));
+      setCursorMessage(nextMessage);
     };
 
-    const handlePointerLeave = () => setIsVisible(false);
+    const handlePointerLeave = () => {
+      setIsVisible(false);
+      setIsInteractive(false);
+      setCursorMessage({ kicker: "Available", message: "Hire me" });
+    };
 
     window.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("mouseleave", handlePointerLeave);
@@ -59,14 +82,17 @@ export default function CursorFollower() {
   return (
     <div
       ref={followerRef}
-      className={`cursor-follower ${isVisible ? "cursor-follower-visible" : ""}`}
+      className={`cursor-follower ${
+        isVisible ? "cursor-follower-visible" : ""
+      } ${isInteractive ? "cursor-follower-interactive" : ""}`}
       aria-hidden="true"
     >
       <div className="cursor-follower-avatar">
         <img src={ProfileImage} alt="" />
       </div>
-      <div ref={bubbleRef} className="cursor-follower-bubble">
-        Hire me
+      <div className="cursor-follower-bubble">
+        <span className="cursor-follower-kicker">{cursorMessage.kicker}</span>
+        <span className="cursor-follower-message">{cursorMessage.message}</span>
       </div>
     </div>
   );

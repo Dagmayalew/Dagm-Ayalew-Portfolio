@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Download, Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { profile } from "@/data/portfolio";
+import { showCvDownloadToast } from "@/components/CvDownloadToast";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -78,7 +79,7 @@ export default function Contact() {
             <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300">
               Submit <Send className="h-4 w-4" />
             </button>
-            <a href={profile.cvPath} download className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300">
+            <a href={profile.cvPath} download onClick={showCvDownloadToast} className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300">
               Download CV <Download className="h-4 w-4" />
             </a>
           </div>

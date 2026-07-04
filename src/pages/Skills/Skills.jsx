@@ -1,5 +1,5 @@
 import React from "react";
-import { skillGroups } from "@/data/portfolio";
+import { skillExplanations, skillGroups } from "@/data/portfolio";
 
 export default function Skills() {
   return (
@@ -21,7 +21,14 @@ export default function Skills() {
               <h2 className="mb-5 text-2xl font-semibold text-cyan-200">{group.title}</h2>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <span key={skill} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-gray-200">
+                  <span
+                    key={skill}
+                    className="skill-pill"
+                    tabIndex={0}
+                    data-skill-note={skillExplanations[skill] || "Practical product delivery skill."}
+                    data-cursor-kicker="Skill"
+                    data-cursor-message={skill}
+                  >
                     {skill}
                   </span>
                 ))}

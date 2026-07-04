@@ -49,6 +49,40 @@ export const skillGroups = [
   },
 ];
 
+export const skillExplanations = {
+  "React Native": "Mobile UI, navigation, API flows, app state, and production screens.",
+  "Mobile UI": "Clean mobile layouts, touch-friendly controls, loading states, and empty states.",
+  Navigation: "Screen stacks, tabs, protected routes, and deep user flows.",
+  "State management": "Predictable app state for auth, carts, forms, sessions, and cached data.",
+  "API integration": "REST calls, retries, error states, token handling, and backend contracts.",
+  Forms: "Validated inputs, clear feedback, submission states, and reliable user data capture.",
+  Validation: "Client-side checks, helpful errors, and safer form workflows.",
+  Performance: "Faster screens, smoother interactions, and reduced unnecessary re-renders.",
+  React: "Reusable components, product UI, dashboards, and frontend state.",
+  "Next.js": "SEO-ready pages, full-stack routes, deployment, and product websites.",
+  TypeScript: "Safer code, clearer data contracts, and fewer runtime surprises.",
+  "Tailwind CSS": "Fast responsive UI, consistent spacing, and maintainable design systems.",
+  "Responsive UI": "Layouts that work cleanly across mobile, tablet, and desktop.",
+  Go: "Fast backend services, APIs, and simple production-oriented architecture.",
+  NestJS: "Structured backend APIs with modules, services, validation, and auth flows.",
+  "REST APIs": "Practical API design, integration, loading states, and error handling.",
+  Authentication: "Login, JWT flows, protected screens, refresh logic, and secure sessions.",
+  PostgreSQL: "Relational data modeling for products, marketplaces, and admin tools.",
+  Prisma: "Typed database access, migrations, and cleaner backend data workflows.",
+  Git: "Branching, commits, collaboration, and safe delivery workflows.",
+  GitHub: "Pull requests, reviews, issues, and team code collaboration.",
+  Vercel: "Frontend deployment, previews, production builds, and fast releases.",
+  Render: "Backend deployment for APIs and services.",
+  Neon: "Hosted PostgreSQL for production-ready database workflows.",
+  Supabase: "Auth, database, storage, and admin-ready product foundations.",
+  Figma: "Reading designs, UI decisions, spacing, and product handoff.",
+  "UI/UX thinking": "User flows, usability, hierarchy, and product clarity.",
+  Debugging: "Finding root causes across UI, API, state, and deployment issues.",
+  QA: "Checking edge cases, loading, empty, error, and success states.",
+  Deployment: "Moving features from local development to usable production environments.",
+  "Technical docs": "Clear notes for setup, APIs, handoff, and team continuity.",
+};
+
 export const projects = [
   {
     name: "PSY / ሳይ",
