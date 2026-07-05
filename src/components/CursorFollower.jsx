@@ -12,7 +12,7 @@ export default function CursorFollower() {
   const [isPopping, setIsPopping] = useState(false);
   const [cursorMessage, setCursorMessage] = useState({
     kicker: "Available",
-    message: "Hire me",
+    message: "Let’s build",
   });
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function CursorFollower() {
           }
         : interactiveTarget
           ? { kicker: "Open it", message: "Let's go" }
-          : { kicker: "Available", message: "Hire me" };
+          : { kicker: "Available", message: "Let’s build" };
 
       targetRef.current = {
         x: event.clientX + (interactiveTarget ? 26 : 18),
@@ -65,7 +65,7 @@ export default function CursorFollower() {
     const handlePointerLeave = () => {
       setIsVisible(false);
       setIsInteractive(false);
-      setCursorMessage({ kicker: "Available", message: "Hire me" });
+      setCursorMessage({ kicker: "Available", message: "Let’s build" });
     };
 
     const schedulePulse = () => {

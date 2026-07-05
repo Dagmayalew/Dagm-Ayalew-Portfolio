@@ -9,6 +9,7 @@ import CursorFollower from "./components/CursorFollower";
 import CvDownloadToast from "./components/CvDownloadToast";
 import Header from "./pages/Header/Header";
 import RecruiterSummary from "./components/RecruiterSummary";
+import RecruiterSprintGame from "./components/RecruiterSprintGame";
 import Hero from "./pages/Hero/Hero";
 import About from "./pages/About/About";
 import Skills from "./pages/Skills/Skills";
@@ -98,6 +99,7 @@ export default function App() {
       <CursorFollower />
       <CvDownloadToast />
       <RecruiterSummary />
+      {location.pathname === "/" && <RecruiterSprintGame />}
       <RouteImageTransition isActive={isRouteImageActive} />
       <Header />
       <AnimatePresence mode="wait">

@@ -694,6 +694,159 @@ pre[class*="language-"] {
   animation: availability-pulse 1.8s ease-out infinite;
 }
 
+.recruiter-game {
+  position: fixed;
+  inset: 0;
+  z-index: 44;
+  pointer-events: none;
+}
+
+.recruiter-game-chip {
+  position: fixed;
+  right: 1rem;
+  bottom: 4.7rem;
+  display: grid;
+  gap: 0.1rem;
+  min-width: 10.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(103, 232, 249, 0.22);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(34, 211, 238, 0.16), transparent 10rem),
+    rgba(2, 6, 23, 0.76);
+  padding: 0.68rem 0.78rem;
+  color: #ecfeff;
+  box-shadow:
+    0 14px 42px rgba(2, 6, 23, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  opacity: 0.88;
+}
+
+.recruiter-game-chip span {
+  color: #67e8f9;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.recruiter-game-chip strong {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.recruiter-game-chip small {
+  color: #a7f3d0;
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.recruiter-game-hire {
+  position: fixed;
+  translate: -50% -50%;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.48);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(103, 232, 249, 0.38), transparent 3rem),
+    linear-gradient(135deg, rgba(8, 47, 73, 0.92), rgba(6, 78, 59, 0.92));
+  padding: 0.95rem 1.15rem;
+  color: #ecfeff;
+  font-size: 0.95rem;
+  font-weight: 950;
+  box-shadow:
+    0 20px 54px rgba(8, 47, 73, 0.34),
+    0 0 34px rgba(52, 211, 153, 0.32);
+  pointer-events: none;
+  transition:
+    left 180ms ease,
+    top 180ms ease;
+  animation: recruiter-hire-pulse 950ms ease-in-out infinite alternate;
+}
+
+.recruiter-game-caught .recruiter-game-chip {
+  opacity: 0;
+}
+
+.recruiter-game-win {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  gap: 0.35rem;
+  width: min(28rem, calc(100vw - 2rem));
+  transform: translate(-50%, -50%);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(52, 211, 153, 0.46);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(52, 211, 153, 0.22), transparent 16rem),
+    rgba(2, 6, 23, 0.9);
+  padding: 1.35rem;
+  text-align: center;
+  box-shadow:
+    0 28px 90px rgba(2, 6, 23, 0.52),
+    0 0 48px rgba(34, 211, 238, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+  animation: recruiter-win-pop 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.recruiter-game-win span {
+  color: #67e8f9;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.recruiter-game-win strong {
+  color: #ffffff;
+  font-size: clamp(1.9rem, 7vw, 3.5rem);
+  line-height: 1;
+}
+
+.recruiter-game-win small {
+  margin-inline: auto;
+  max-width: 22rem;
+  color: #bbf7d0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.recruiter-game-won .recruiter-game-chip,
+.recruiter-game-caught .recruiter-game-win {
+  border-color: rgba(52, 211, 153, 0.54);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(52, 211, 153, 0.2), transparent 15rem),
+    rgba(2, 44, 34, 0.9);
+}
+
+@keyframes recruiter-hire-pulse {
+  from {
+    transform: scale(1) rotate(-1deg);
+  }
+  to {
+    transform: scale(1.08) rotate(1deg);
+  }
+}
+
+@keyframes recruiter-win-pop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 720px), (pointer: coarse) {
+  .recruiter-game {
+    display: none;
+  }
+}
+
 @keyframes availability-pulse {
   0% {
     opacity: 0.85;
