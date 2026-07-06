@@ -4,7 +4,7 @@ export const profile = {
   location: "Addis Ababa, Ethiopia",
   email: "dagmayalew489@gmail.com",
   phone: "+251988280976",
-  portfolioUrl: "http://dagi-portfolio-terminal-1uaa.vercel.app",
+  portfolioUrl: "https://dagi-portfolio-terminal-1uaa.vercel.app",
   cvPath: "/Dagm_Ayalew_CV.pdf",
   linkedIn: "https://www.linkedin.com",
   github: "https://github.com",

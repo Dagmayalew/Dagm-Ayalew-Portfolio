@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ProfileImage from "@/assets/images/hero.png";
 
-const tailSegments = [1, 2, 3, 4, 5];
+const tailSegments = [1, 2, 3, 4];
 
 export default function CursorFollower() {
   const followerRef = useRef(null);
@@ -45,7 +45,7 @@ export default function CursorFollower() {
         followerRef.current.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
       }
 
-      const avatarSize = 54 + snakeLevelRef.current * 8;
+      const avatarSize = 46 + snakeLevelRef.current * 6;
       const mouth = mouthPositionRef.current;
       const head = {
         x: current.x + avatarSize / 2,

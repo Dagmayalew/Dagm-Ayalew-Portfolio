@@ -1,20 +1,72 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Download, Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { showCvDownloadToast } from "@/components/CvDownloadToast";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
+const initialFormData = { name: "", email: "", message: "" };
+const contactFormEndpoint =
+  import.meta.env.VITE_CONTACT_FORM_ENDPOINT ||
+  `https://formsubmit.co/ajax/${profile.email}`;
 
-  function handleSubmit(event) {
+function buildMailtoUrl({ name, email, message }) {
+  const subject = encodeURIComponent("Portfolio inquiry");
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+  return `mailto:${profile.email}?subject=${subject}&body=${body}`;
+}
+
+export default function Contact() {
+  const [formData, setFormData] = useState(initialFormData);
+  const [status, setStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    const subject = encodeURIComponent("Portfolio inquiry");
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setStatus("Opening your mail app so the message can be sent directly.");
+
+    setIsSubmitting(true);
+    setStatus({ type: "loading", message: "Sending your message..." });
+
+    try {
+      const response = await fetch(contactFormEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+          _subject: "New portfolio message for Dagm",
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || result?.success === "false") {
+        throw new Error(result?.message || "The form service could not send this message.");
+      }
+
+      setFormData(initialFormData);
+      setStatus({
+        type: "success",
+        message:
+          "Message sent. If this is the first FormSubmit message, check the inbox once to activate delivery.",
+      });
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Something went wrong while sending the message.",
+        fallbackHref: buildMailtoUrl(formData),
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -53,6 +105,7 @@ export default function Contact() {
           <div className="grid gap-5">
             <input
               required
+              name="name"
               placeholder="Your name"
               value={formData.name}
               onChange={(event) => setFormData({ ...formData, name: event.target.value })}
@@ -60,6 +113,7 @@ export default function Contact() {
             />
             <input
               required
+              name="email"
               type="email"
               placeholder="Your email"
               value={formData.email}
@@ -68,6 +122,7 @@ export default function Contact() {
             />
             <textarea
               required
+              name="message"
               rows="6"
               placeholder="Message"
               value={formData.message}
@@ -76,14 +131,34 @@ export default function Contact() {
             />
           </div>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300">
-              Submit <Send className="h-4 w-4" />
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isSubmitting ? "Sending..." : "Submit"} <Send className="h-4 w-4" />
             </button>
             <a href={profile.cvPath} download onClick={showCvDownloadToast} className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-3 font-semibold text-white transition hover:border-cyan-300 hover:text-cyan-300">
               Download CV <Download className="h-4 w-4" />
             </a>
           </div>
-          {status && <p className="mt-4 text-sm text-cyan-300">{status}</p>}
+          {status && (
+            <p
+              className={`mt-4 text-sm ${
+                status.type === "error" ? "text-rose-300" : "text-cyan-300"
+              }`}
+            >
+              {status.message}
+              {status.fallbackHref && (
+                <>
+                  {" "}
+                  <a href={status.fallbackHref} className="font-semibold underline">
+                    Send by email instead.
+                  </a>
+                </>
+              )}
+            </p>
+          )}
         </form>
       </div>
     </section>

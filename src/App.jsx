@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import "./assets/css/index.css";
@@ -10,6 +10,7 @@ import CvDownloadToast from "./components/CvDownloadToast";
 import Header from "./pages/Header/Header";
 import RecruiterSummary from "./components/RecruiterSummary";
 import RecruiterSprintGame from "./components/RecruiterSprintGame";
+import SeoManager from "./components/SeoManager";
 import Hero from "./pages/Hero/Hero";
 import About from "./pages/About/About";
 import Skills from "./pages/Skills/Skills";
@@ -18,6 +19,8 @@ import Experience from "./pages/Experience/Experience";
 import Education from "./pages/Education/Education";
 import Contact from "./pages/Contact/Contact";
 
+// This app does not use a prop-types package, so keep these tiny route wrappers local.
+// eslint-disable-next-line react/prop-types
 function PageShell({ children }) {
   return (
     <motion.div
@@ -32,6 +35,7 @@ function PageShell({ children }) {
   );
 }
 
+// eslint-disable-next-line react/prop-types
 function RouteImageTransition({ isActive }) {
   return (
     <div
@@ -94,9 +98,10 @@ export default function App() {
 
   return (
     <div className="app-shell" onClickCapture={handleAppClickCapture}>
+      <SeoManager />
       <AvailabilityPill />
       <CommandPalette />
-      <CursorFollower />
+      {location.pathname === "/" && <CursorFollower />}
       <CvDownloadToast />
       <RecruiterSummary />
       {location.pathname === "/" && <RecruiterSprintGame />}

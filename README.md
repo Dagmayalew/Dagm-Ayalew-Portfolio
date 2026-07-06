@@ -36,6 +36,17 @@ npm run build
 npm run preview
 ```
 
+## Contact Form
+
+The contact page sends messages through `VITE_CONTACT_FORM_ENDPOINT`.
+By default, the app uses FormSubmit with `dagmayalew489@gmail.com`:
+
+```bash
+VITE_CONTACT_FORM_ENDPOINT=https://formsubmit.co/ajax/dagmayalew489@gmail.com
+```
+
+On the first live submission, FormSubmit sends a confirmation email to activate delivery.
+
 ## Deploy To Vercel
 
 1. Push the project to GitHub.

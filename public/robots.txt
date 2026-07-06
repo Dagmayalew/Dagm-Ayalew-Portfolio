@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dagi-portfolio-terminal-1uaa.vercel.app/sitemap.xml

@@ -1,0 +1,17 @@
+{
+  "name": "Dagm Ayalew Portfolio",
+  "short_name": "Dagm Ayalew",
+  "description": "Portfolio of Dagm Ayalew, a mobile app and full stack software developer in Ethiopia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04081A",
+  "theme_color": "#04081A",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
