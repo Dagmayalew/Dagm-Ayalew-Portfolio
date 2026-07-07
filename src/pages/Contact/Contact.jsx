@@ -75,7 +75,7 @@ export default function Contact() {
         <div>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">Contact</p>
           <h1 className="text-4xl font-semibold leading-tight md:text-6xl">
-            Available for remote roles, freelance work, and product collaborations.
+            Open for full-time and part-time jobs, freelance work, and product collaborations.
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
             Reach out for mobile app development, frontend work, full-stack product builds,

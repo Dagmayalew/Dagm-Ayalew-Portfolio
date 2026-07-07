@@ -5,11 +5,9 @@ import "./assets/css/index.css";
 import ProfileImage from "@/assets/images/hero.png";
 import AvailabilityPill from "./components/AvailabilityPill";
 import CommandPalette from "./components/CommandPalette";
-import CursorFollower from "./components/CursorFollower";
 import CvDownloadToast from "./components/CvDownloadToast";
 import Header from "./pages/Header/Header";
 import RecruiterSummary from "./components/RecruiterSummary";
-import RecruiterSprintGame from "./components/RecruiterSprintGame";
 import SeoManager from "./components/SeoManager";
 import Hero from "./pages/Hero/Hero";
 import About from "./pages/About/About";
@@ -101,10 +99,8 @@ export default function App() {
       <SeoManager />
       <AvailabilityPill />
       <CommandPalette />
-      {location.pathname === "/" && <CursorFollower />}
       <CvDownloadToast />
       <RecruiterSummary />
-      {location.pathname === "/" && <RecruiterSprintGame />}
       <RouteImageTransition isActive={isRouteImageActive} />
       <Header />
       <AnimatePresence mode="wait">

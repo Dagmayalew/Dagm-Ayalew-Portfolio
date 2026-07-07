@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
@@ -9,10 +8,10 @@ export default function AvailabilityPill() {
       className="availability-pill"
       data-cursor-kicker="Available"
       data-cursor-message="Let's talk"
-      aria-label="Contact Dagm for remote work"
+      aria-label="Contact Dagm for full-time and part-time jobs"
     >
       <span className="availability-pill-dot" />
-      <span>Available for remote work</span>
+      <span>Open for full-time and part-time jobs</span>
       <ArrowUpRight className="h-4 w-4" />
     </Link>
   );

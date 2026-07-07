@@ -84,6 +84,109 @@ export const skillExplanations = {
 };
 
 export const projects = [
+  // Keep these four mobile apps at the top: they are the strongest portfolio proof points.
+  {
+    name: "Dashen Super App",
+    type: "Mobile App",
+    client: "Dashen Bank Ethiopia",
+    description:
+      "A banking super app for Dashen Bank that includes banking services, transactions, e-commerce, and mini-app experiences.",
+    role: "Mobile Developer",
+    stack: ["React Native"],
+    status: "Private / Published app",
+    link: "https://play.google.com/store/apps/details?id=com.dashen.dashensuperapp&pcampaignid=web_share",
+    keyFeatures: ["Transactions", "E-commerce", "Mini-apps", "Light mode", "Super app mode"],
+    impact: "1M+ downloads; learned clean code practices in a large-scale banking app.",
+    personallyBuilt:
+      "Some transaction flows, e-commerce features, and API integration.",
+    publicPortfolio: "Yes",
+    year: "TBD",
+    screenshots: "Available on request",
+    problem:
+      "Need a unified banking experience that combines core finance tasks with commerce and mini-app flows.",
+    value:
+      "Shows large-scale mobile product work in a high-stakes banking environment with real users.",
+  },
+  {
+    name: "Ethio Post Agent Banking App",
+    type: "Mobile App",
+    client: "Ethio Post",
+    description:
+      "An agent banking mobile app built for Ethio Post, supporting financial transactions, utility payments, authentication, profile management, and notifications.",
+    role: "Mobile Developer",
+    stack: ["React Native"],
+    status: "Private",
+    link: "Screenshots will be added",
+    keyFeatures: [
+      "Transactions",
+      "Utility payments",
+      "Profile management",
+      "Authentication",
+      "Notifications",
+    ],
+    impact: "Supports transactional agent banking flows and customer account management.",
+    personallyBuilt:
+      "Full app UI implementation, transaction flows, authentication, biometric login, profile management, notifications, and API integration.",
+    publicPortfolio: "Yes",
+    year: "TBD",
+    screenshots: "Available on request",
+    problem:
+      "Agent banking needs a reliable mobile workflow for transactions, payments, and secure account access.",
+    value:
+      "Demonstrates practical fintech mobile work with security-minded flows and user account management.",
+  },
+  {
+    name: "Choice Micro Finance App",
+    type: "Mobile App",
+    client: "Choice Micro Finance",
+    description:
+      "A banking mobile app for Choice Micro Finance with mini-apps, transactions, e-commerce features, and super app-style functionality.",
+    role: "Mobile Developer",
+    stack: ["React Native"],
+    status: "In development / Private",
+    link: "Not added",
+    keyFeatures: ["Transactions", "E-commerce", "Mini-apps", "Light mode", "Super app mode"],
+    impact: "In development",
+    personallyBuilt: "Some transaction flows and e-commerce features.",
+    publicPortfolio: "Yes",
+    year: "TBD",
+    screenshots: "Available on request",
+    problem:
+      "Micro finance users need a mobile experience that can grow from simple transactions into richer service flows.",
+    value:
+      "Shows mobile-first fintech thinking with room for broader product expansion.",
+  },
+  {
+    name: "Order Ethiopia",
+    type: "Mobile App",
+    client: "Order Ethiopia",
+    description:
+      "A national e-commerce mobile app for Ethiopia with product browsing, shop discovery, cart and order flows, user profile management, and short-video shopping content.",
+    role: "Mobile Developer",
+    stack: ["React Native"],
+    status: "In development / Private",
+    link: "In development",
+    keyFeatures: [
+      "Authentication",
+      "Product list",
+      "Shop list",
+      "Shop detail",
+      "Cart detail",
+      "Order detail",
+      "Profile management",
+      "TikTok-style short videos",
+    ],
+    impact: "In development",
+    personallyBuilt:
+      "Authentication, product list, shop list, shop detail, cart detail, order detail, profile management, short videos, and API integration for all listed flows.",
+    publicPortfolio: "Yes",
+    year: "TBD",
+    screenshots: "Available on request",
+    problem:
+      "E-commerce needs a mobile-first discovery and checkout flow that can handle products, shops, and content together.",
+    value:
+      "Demonstrates consumer commerce product work with modern shopping patterns and video-led discovery.",
+  },
   {
     name: "PSY / ሳይ",
     description: "A psychology and self-authorship platform built around privacy, consent, and guided personal journeys.",

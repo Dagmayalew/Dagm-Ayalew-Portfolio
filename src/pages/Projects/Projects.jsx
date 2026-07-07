@@ -1,4 +1,3 @@
-import React from "react";
 import { ExternalLink, Github, Layers3, CheckCircle2 } from "lucide-react";
 import { profile, projects } from "@/data/portfolio";
 
@@ -71,8 +70,28 @@ export default function Projects() {
                 ))}
               </div>
 
+              {(project.type || project.client || project.status) && (
+                <div className="mt-6 grid gap-2 text-sm sm:grid-cols-2">
+                  {project.type && (
+                    <p className="text-gray-300">
+                      <span className="font-semibold text-cyan-200">Type:</span> {project.type}
+                    </p>
+                  )}
+                  {project.client && (
+                    <p className="text-gray-300">
+                      <span className="font-semibold text-cyan-200">Client:</span> {project.client}
+                    </p>
+                  )}
+                  {project.status && (
+                    <p className="text-gray-300">
+                      <span className="font-semibold text-cyan-200">Status:</span> {project.status}
+                    </p>
+                  )}
+                </div>
+              )}
+
               <ul className="mt-6 grid gap-2">
-                {project.features.map((feature) => (
+                {(project.features ?? project.keyFeatures ?? []).map((feature) => (
                   <li
                     key={feature}
                     data-cursor-kicker="Built this"

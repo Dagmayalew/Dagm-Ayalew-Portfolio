@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Download, Mail, Sparkles, X } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { showCvDownloadToast } from "@/components/CvDownloadToast";
@@ -7,7 +7,7 @@ const summaryPoints = [
   "Mobile app developer with full-stack product experience.",
   "Strong fit for React Native, frontend, and API-connected roles.",
   "Comfortable across auth, payments, dashboards, deployment, and product UX.",
-  "Available for remote roles, freelance work, and product collaborations.",
+  "Open for full-time and part-time jobs, freelance work, and product collaborations.",
 ];
 
 export default function RecruiterSummary() {
@@ -79,7 +79,7 @@ export default function RecruiterSummary() {
               </div>
               <div>
                 <span>Availability</span>
-                <strong>Remote roles, freelance, collaborations</strong>
+                <strong>Full-time, part-time, freelance</strong>
               </div>
               <div>
                 <span>Email</span>

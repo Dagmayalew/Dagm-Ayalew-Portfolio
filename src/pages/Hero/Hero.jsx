@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Download, Mail } from "lucide-react";
 import Meteors from "@/components/ui/meteors";
@@ -7,6 +7,21 @@ import { FlipWords } from "@/components/ui/flip-words";
 import Magnetic from "@/components/Magnetic";
 import { showCvDownloadToast } from "@/components/CvDownloadToast";
 import { profile, trustSignals } from "@/data/portfolio";
+
+const words = [
+  "Mobile App Developer",
+  "React Native Engineer",
+  "Full Stack Developer",
+  "Product Builder",
+];
+
+const terminalLines = [
+  "dagm.status = \"open for full-time and part-time jobs\"",
+  "dagm.stack = [\"React Native\", \"Next.js\", \"TypeScript\", \"Go\", \"PostgreSQL\"]",
+  "dagm.focus = \"mobile-first products + reliable APIs\"",
+  "dagm.strengths = [\"clean UI\", \"auth flows\", \"payments\", \"deployment\"]",
+  "dagm.readyToBuild() // true",
+];
 
 function GridBackground() {
   return (
@@ -24,21 +39,6 @@ function GridBackground() {
 }
 
 export default function Hero() {
-  const words = [
-    "Mobile App Developer",
-    "React Native Engineer",
-    "Full Stack Developer",
-    "Product Builder",
-  ];
-
-  const terminalLines = [
-    "dagm.status = \"available for remote roles\"",
-    "dagm.stack = [\"React Native\", \"Next.js\", \"TypeScript\", \"Go\", \"PostgreSQL\"]",
-    "dagm.focus = \"mobile-first products + reliable APIs\"",
-    "dagm.strengths = [\"clean UI\", \"auth flows\", \"payments\", \"deployment\"]",
-    "dagm.readyToBuild() // true",
-  ];
-
   const [typedLines, setTypedLines] = useState([]);
   const [currentLine, setCurrentLine] = useState("");
 
