@@ -6,8 +6,8 @@ export const profile = {
   phone: "+251988280976",
   portfolioUrl: "https://dagi-portfolio-terminal-1uaa.vercel.app",
   cvPath: "/Dagm_Ayalew_CV.pdf",
-  linkedIn: "https://www.linkedin.com",
-  github: "https://github.com",
+  linkedIn: "https://www.linkedin.com/in/dagm-ayalew/",
+  github: "https://github.com/Dagmayalew",
 };
 
 export const trustSignals = [
@@ -204,15 +204,6 @@ export const projects = [
     stack: ["React Native", "Next.js", "REST APIs", "Marketplace UX"],
     features: ["Guest browsing", "Owner and renter flows", "Visit requests", "Admin approval", "Trust and safety patterns"],
     value: "Creates a scalable marketplace foundation with clear moderation and multi-category expansion paths.",
-  },
-  {
-    name: "Order Ethiopia",
-    description: "A React Native e-commerce app designed for mobile-first shopping and checkout.",
-    problem: "Mobile shoppers need fast product discovery, clear checkout, and location-aware delivery flows.",
-    role: "Mobile developer",
-    stack: ["React Native", "TypeScript", "Zustand", "REST APIs"],
-    features: ["Cart and checkout", "Product details", "Location flow", "Reviews", "Payment sheets", "Search and categories"],
-    value: "Improves the shopping journey from browsing to checkout with reusable mobile UI patterns.",
   },
   {
     name: "Color Token Manager",
